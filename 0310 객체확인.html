@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 객체 : 속성값(변수)과 메소드(함수)를 가지고 있는 자료형(변수에 저장해서 사용)
+
+        // document의 자료형 : 객체(object)
+        document.write(typeof(document));
+
+        // 객체 생성 후 변수에 할당 (자료형이기 때문)
+        let puppy = {
+            // property
+            name : '초코',
+            // method
+            eat : function() {
+                document.write(`<p>${this.name}이 밥을 먹습니다</p>`);
+            }
+        };
+
+        document.write(`<p>${puppy}</p>`);
+        puppy.eat();
+
+        let person = {
+            name : '홍길동',
+            address : "부산",
+            intro : function() {
+                return `${this.name}입니다. ${this.address}에 거주중입니다.`;
+            }
+        };
+
+        console.log(person.name, person.address);
+        console.log(person.intro());
+
+        let myCookie = {
+            shape : '원',
+            flavor : "초코",
+            intro : function() {
+                return `${this.shape} 모양의 ${this.flavor} 맛입니다.`;
+            },
+            count : (number) => {
+                return `${number}개 있습니다.`;
+            }
+        };
+
+        myCookie.flavor = "딸기";
+
+        console.log(myCookie.intro());
+        console.log(myCookie.count(6));
+
+        // 생성자 함수 : 값을 받아와서 객체를 만드는 함수
+        // 생성자 함수는 구분을 위해 첫 글자 대문자
+        function Dog(name, age, color) {
+            this.name = name;
+            this.age = age;
+            this.color = color;
+            // 메소드 작성
+            this.eat = function() {
+                return `${this.name}은 밥을 먹습니다.`;
+            }
+        }
+
+        let dog1 = new Dog('도지', 4, '황색');
+        dog1.age = 3;
+        dog1.family = "시바견";
+        console.log(dog1);
+        console.log(dog1.name);
+        // 없는 속성에 접근해도 오류가 발생하지 않고 undefined를 출력
+        console.log(dog1.no);
+        console.log(dog1.eat());
+
+        function Student(name, score) {
+            this.name = name;
+            this.score = score;
+            this.study = function() {
+                this.score += 5;
+            };
+            this.showScore = function() {
+                return this.score;
+            }
+        }
+
+        let myStudent = new Student("홍길동", 70);
+        let yourStudent = new Student("성춘향", 80);
+
+        myStudent.study();
+        console.log(myStudent.showScore());
+
+        function BusCard(money) {
+            this.money = money;
+            this.charge = function(금액) {
+                this.money += 금액;
+            };
+            this.takeBus = function() {
+                if(this.money < 1500) {
+                    console.log('잔액이 부족합니다.');
+                } else {
+                    this.money -= 1500;
+                }
+            };
+            this.showMoney = function() {
+                console.log(this.money);
+            }
+        };
+
+        let myBusCard = new BusCard(1500);
+        let yourBusCard = new BusCard(1000);
+
+        yourBusCard.takeBus();
+        yourBusCard.charge(3000);
+        yourBusCard.showMoney();
+        yourBusCard.takeBus();
+        yourBusCard.showMoney();
+
+        function Message(name, content, time) {
+            this.name = name;
+            this.content = content;
+            this.time = time;
+            this.modifyMessage = function(message) {
+                this.content = message;
+            };
+            this.showMessage = function() {
+                console.log(`${this.name} 님께서 ${this.content}를 ${this.time}에 보냈습니다.`)
+            };
+        };
+
+        let myMessage = new Message("홍길동", "반갑습니다", "0224");
+        let yourMessage = new Message("성춘향", "안녕하세요", "0224");
+
+        myMessage.showMessage();
+        myMessage.modifyMessage("안 반갑습니다.");
+        myMessage.showMessage();
+    </script>
+</body>
+</html>
