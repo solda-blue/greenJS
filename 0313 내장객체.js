@@ -99,3 +99,35 @@ let name1 = '홍길동';
 let star = name1.charAt(1);
 console.log(star);
 console.log(name1.replace('길', '*'));
+
+let startTime = new Date();
+for (let i = 0; i < 10; i++) {
+    console.log(i);
+}
+let endTime = new Date();
+console.log(endTime-startTime)
+
+// Number : 숫자와 관련된 객체
+// Number로 접근해서 쓰는 메소드와 속성이 있고 객체를 만들어서 접근하는 메소드가 있다
+console.log(Number.isNaN(NaN));
+let num = 10.5;
+// toFixed()는 숫자 값의 소수점을 어디까지 보여줄지 정함
+console.log(num.toFixed(1));
+
+// 래퍼객체
+// 숫자, boolean, 문자열과 같은 기초자료형은
+// 메소드를 사용할 수 없지만 객체의 메소드를 사용하기위해
+// 자바스크립트에서 메소드를 사용하기전에 객체로 만들어서 메소드에 접근한다
+
+// 배열 갹체
+// toString : 객체의 담은 변수이름을 호출했을 때 출력할 문자열을 작성
+let arrString = [1, 2, 3, 4];
+console.log(arrString.toString());
+let obj = {
+    name : '객체',
+    value : '값',
+    // toString 메소드를 작성하면 객체의 변수이름을 작성했을 때
+    // 리턴 할 내용을 정할 수 있다
+    toString : function() {return this.value}
+};
+console.log(obj);
