@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        p {
+            margin: 0;padding: 0;
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <h1>부산 음식 뭐시기</h1>
+    <button id="btn">데이터 가져오기</button> <button id="forOf">전부 가져오기</button>
+    <ul id="dataList">
+        <li>
+            식당이름, 메뉴
+        </li>
+    </ul>
+
+    <div id="div"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        const forOf = document.getElementById('forOf');
+        const div = document.getElementById('div');
+        const apiToken = 'D11oxSukCY8qoMslBf4FEe2ycKgGTcQF9gSByN253M6LcFZzoIWbLOy0CV8h8RpM';
+        let page = 1;
+        const dataList = document.getElementById('dataList');
+        const btn = document.getElementById('btn');
+
+        let data = {}
+
+        async function handleData() {
+            const url = `https://busan-food.openapi.redtable.global/api/menu-dscrn/korean?serviceKey=${apiToken}&pageNo=${page}`;
+            const headers = {
+                "Content-Type" : "application/json"
+            };
+            const result = await axios.get(url, {headers});
+            return result.data;
+        };
+
+        async function onMounted () {
+            data = await handleData();
+            console.log(data);
+        }
+        onMounted();
+
+        forOf.addEventListener('click', handleFor);
+        async function handleFor() {
+            let arr = data.body;
+            console.log(arr);
+            for(let tmp of arr) {
+                // console.log(tmp);
+                let span = document.createElement('p');
+                span.innerText = `${tmp.RSTR_NM}, ${tmp.MENU_NM}, ${tmp.MENU_DSCRN}`;
+                document.body.appendChild(span);
+            }
+            console.log(arr.length);
+        }
+
+        let i = 0;
+        btn.addEventListener('click', function() {
+            handleData1(i);
+            i = i+10;
+            console.log(i);
+        })
+        async function handleData1(num) {
+            // 가져온 데이터를 append를 이용해서 출력
+            for(let i = num; i < num+10; i++) {
+                let li = document.createElement('li');
+                // if(data.body[i-1].RSTR_NM === data.body[i].RSTR_NM) {
+                //     li.innerText = `ㄴ${data.body[i].MENU_NM}`;
+                // } else {
+                    li.innerText = `${data.body[i].RSTR_NM}, ${data.body[i].MENU_NM}`;
+                // }
+                dataList.appendChild(li);
+            }
+        }
+    </script>
+</body>
+</html>

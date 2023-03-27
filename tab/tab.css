@@ -1,0 +1,46 @@
+/* 기본태그 디자인 */
+* {
+    margin: 0;
+    padding: 0;
+}
+ul {
+    list-style: none;
+}
+a {
+    text-decoration: none;
+    color: black;
+}
+
+/* tab-menu */
+
+/* tab-menu의 li들을 나열 */
+.tab-menu .list {
+    display: flex;
+    height: 200px;
+}
+
+/* a버튼 */
+.tab-menu .list li .btn {
+    padding: 0px 5px;
+    font-size: 1.2rem;
+}
+
+.tab-menu .list li.on .btn {
+    color: white;
+    background-color: black;
+}
+
+/* contents */
+.tab-menu .list li .content {
+    display: none;
+    position: absolute;
+    left: 0;
+    width: 500px;
+    height: 150px;
+    padding: 10px;
+    background-color: gray;
+    color: white;
+}
+.tab-menu .list li.on .content{
+    display: block;
+}

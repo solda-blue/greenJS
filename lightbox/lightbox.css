@@ -1,0 +1,38 @@
+/* 태그의 디자인 */
+* { margin: 0;padding: 0; }
+ul { list-style: none; }
+
+/* image-box */
+.image-box {
+    /* margin auto는 block 태그가 width 값이 있을 때 사용 */
+    /* div는 안에 컨텐츠크기가 커지면 그대로 밖으로 나가므로 그 크기를 확인해서 작성해 주어야 한다 */
+    overflow: hidden;
+    width: 300px;
+    margin: 0 auto; 
+}
+.box {
+    display: flex;
+}
+
+/* image-box의 img태그 .pic 클래스 */
+.pic {
+    width: 100px;
+}
+
+/* light-box */
+.light-box {
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    text-align: center;
+    padding-top: 10vh;
+    /* 클래스를 통해서 block으로 바꿔도 되지만
+    하나밖에 없기에 속성으로 직접 접근해서 수정해도 된다 */
+    display: none;
+}
+/* light-box의 이미지 */
+#image {
+    width: 80vw;
+}
